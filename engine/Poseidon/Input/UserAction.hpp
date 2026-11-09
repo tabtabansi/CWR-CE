@@ -22,6 +22,10 @@ UAMoveForward, UAMoveBack, UATurnLeft, UATurnRight, UAMoveUp, UAMoveDown, UAMove
     UAAxisTurn, UAAxisDive, UAAxisRudder, UAAxisThrust,
     UAAimUp, UAAimDown, UAAimLeft, UAAimRight,
     UAMapZoomIn, UAMapZoomOut, UACheatEntry, UAChatPrevChannel, UAChatNextChannel, UAChatHistoryUp, UAChatHistoryDown,
+
+    // On-foot hop.  Prototype: launches the soldier with a vertical impulse and
+    // lets the existing free-fall physics carry him back down.
+    UAJump,
 #if _ENABLE_CHEATS
     UACheat1, UACheat2,
 #endif

@@ -1292,6 +1292,7 @@ UserActionDesc* InputSubsystem::GetUserActionDesc()
         UserActionDesc("ChatNextChannel", IDS_USRACT_CHAT_NEXT_CHANNEL, SDL_SCANCODE_UP, -1),
         UserActionDesc("ChatHistoryUp", IDS_USRACT_CHAT_HISTORY_UP, SDL_SCANCODE_PAGEUP, -1),
         UserActionDesc("ChatHistoryDown", IDS_USRACT_CHAT_HISTORY_DOWN, SDL_SCANCODE_PAGEDOWN, -1),
+        UserActionDesc("Jump", IDS_USRACT_JUMP, SDL_SCANCODE_J, -1),
 #if _ENABLE_CHEATS
         UserActionDesc("Cheat1", IDS_USRACT_CHEAT_1, SDL_SCANCODE_RGUI, -1),
         UserActionDesc("Cheat2", IDS_USRACT_CHEAT_2, SDL_SCANCODE_RALT, -1),
@@ -1319,6 +1320,10 @@ const char* InputSubsystem::GetUserActionLabel(UserAction action)
             return LocalizeStringWithFallback("STR_USRACT_CHAT_HISTORY_UP", "Chat history up");
         case UAChatHistoryDown:
             return LocalizeStringWithFallback("STR_USRACT_CHAT_HISTORY_DOWN", "Chat history down");
+        case UAJump:
+            // New engine action: no STR_ row in the shipped stringtable, so fall
+            // back to the canonical name instead of showing an empty row.
+            return LocalizeStringWithFallback("STR_USRACT_JUMP", "Jump");
         default:
             return LocalizeString(GetUserActionDesc()[action].desc);
     }

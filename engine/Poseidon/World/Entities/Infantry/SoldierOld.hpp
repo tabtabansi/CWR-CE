@@ -547,6 +547,10 @@ class Man: public Person
 
 	RStringB _soundStepOverride;
 	Foundation::Time _freeFallUntil;
+	// Set by the player's pilot when the jump key is pressed; consumed at the
+	// end of the ground-contact pass in Simulate, once the contact state for
+	// this frame is known.
+	bool _jumpRequested;
 
 	float _aimInaccuracyX,_aimInaccuracyY;
 	Foundation::Time _lastInaccuracyTime;

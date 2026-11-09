@@ -775,6 +775,33 @@ void Man::Simulate(float deltaT, SimulationImportance prec)
             }
         }
 
+        // Jump.  Applied after both the ground pass and the collision pass:
+        // the former is what says whether the soldier is standing on anything
+        // this frame, and the contact branch just above rewrites the vertical
+        // speed of a supported body, so a launch authored any earlier would
+        // be erased on the same frame.  Only the vertical component is
+        // authored — the horizontal speed the move queue produced last frame
+        // is kept, so a running jump carries its momentum and a standing jump
+        // goes straight up.  From here on the pre-existing free-fall path
+        // takes over (gravity, the rise exemption in the ground probe, the
+        // landing contact), so no jump state has to be maintained.
+        if (_jumpRequested)
+        {
+            _jumpRequested = false;
+            // Support is either the landscape or an object being stood on
+            // (crate, roof); both count as grounded for a take-off.
+            if ((_landContact || _objectContact) && !IsDown())
+            {
+                // 4.6 m/s: ~1.1 m apex, ~0.9 s airtime, ~4.6 m/s touchdown,
+                // well under the 10 m/s crash-damage threshold above.
+                _speed[1] = 4.6f;
+                _landContact = false;
+                _objectContact = false;
+                _freeFallUntil = Glob.time + 1.0f;
+                change = true;
+            }
+        }
+
         if (change)
         {
             float legDX = landDX;

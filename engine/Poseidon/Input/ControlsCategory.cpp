@@ -14,6 +14,7 @@ const UserAction kOnFoot[] = {
     UAMoveForward, UAMoveBack, UATurnLeft, UATurnRight, UAMoveLeft, UAMoveRight, UAMoveUp, UAMoveDown,
     UAMoveFastForward, UAMoveSlowForward, UATurbo,
     UASlow, // "Walk" — the slow-movement toggle (label/default key live in UserActionDesc)
+    UAJump, // on-foot hop; no equivalent in vehicles
     // Weapons & combat
     UAFire, UAReloadMagazine, UAToggleWeapons, UAHandgun, UALockTarget, UALockTargets, UARevealTarget, UAOptics,
     UAZoomIn, UAZoomOut,

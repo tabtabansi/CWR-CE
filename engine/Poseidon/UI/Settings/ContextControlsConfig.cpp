@@ -15,7 +15,10 @@ namespace Poseidon
 {
 namespace
 {
-constexpr int kContextControlsVersion = 5;
+// 6: adds the on-foot Jump action.  Bumping the version makes Load() seed
+// defaults for actions an older file has no entry for, so existing players
+// get the jump key bound without resetting their other bindings.
+constexpr int kContextControlsVersion = 6;
 constexpr int kGamepadButtonA = 0;
 constexpr int kGamepadButtonB = 1;
 constexpr int kGamepadButtonX = 2;

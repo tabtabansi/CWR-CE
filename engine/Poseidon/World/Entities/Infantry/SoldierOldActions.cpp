@@ -170,6 +170,15 @@ void Soldier::KeyboardPilot(float deltaT, SimulationImportance prec)
 
     float rlWanted = input.GetAction(UATurnRight) - input.GetAction(UATurnLeft);
 
+    // Jump — only the local player gets this, and only from a grounded
+    // standing/crouched pose.  Simulate() turns the request into a vertical
+    // impulse after this frame's ground contact has been resolved, so the
+    // normal landing code remains the single authority for touching down.
+    if (!_isDead && _landContact && !IsDown() && !_ladderBuilding && input.GetActionToDo(UAJump))
+    {
+        _jumpRequested = true;
+    }
+
     {
         float delta = turnWanted - _turnWanted;
         saturate(delta, -3 * deltaT, +3 * deltaT);

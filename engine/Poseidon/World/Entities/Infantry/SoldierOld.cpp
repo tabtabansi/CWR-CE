@@ -653,7 +653,8 @@ Man::Man(VehicleType* name, bool fullCreate)
 
       _turnToDo(0), _walkToggle(false), _inBuilding(false),
 
-      _doSoundStep(false), _freeFallUntil(Glob.time - 60), _stillMoveQueueEnd(MoveIdNone), _variantTime(Glob.time),
+      _doSoundStep(false), _freeFallUntil(Glob.time - 60), _jumpRequested(false),
+      _stillMoveQueueEnd(MoveIdNone), _variantTime(Glob.time),
 
       _aimInaccuracyX(0), _aimInaccuracyY(0), _aimInaccuracyDist(0), _lastInaccuracyTime(Glob.time),
       _lastInaccuracyDistTime(Glob.time),
