@@ -1548,8 +1548,13 @@ void InGameUI::DrawHUD(const Camera& camera, EntityAI* vehicle, CameraType cam)
                     {
                         texture = GPreloadedTextures.New(CursorWeapon);
                     }
-                    DrawCursor(camera, vehicle, vehicle->GetWeaponDirection(weapon), -1, texture, mouseScrW, mouseScrH,
-                               cursorColor, td);
+                    // Anchor the reticle to the camera view axis instead of the weapon's actual
+                    // direction. The weapon direction carries the aim sway (inaccuracy random
+                    // walk plus turret/aim lag), so the reticle visibly drifts and jitters while
+                    // the player holds still. Camera direction maps to exactly (0,0,1) in view
+                    // space, which DrawCursor turns into a sprite centred on the screen.
+                    DrawCursor(camera, vehicle, camera.Direction(), -1, texture, mouseScrW, mouseScrH, cursorColor,
+                               td);
                 }
             }
         }
