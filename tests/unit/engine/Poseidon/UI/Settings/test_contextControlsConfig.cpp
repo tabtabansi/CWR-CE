@@ -235,7 +235,7 @@ TEST_CASE("ContextControlsConfig: a full version-1 config parses and migrates", 
     CHECK(migrated.profiles[inf].BindingCount(UAFire) > 0);
 
     // Every action the file predates is seeded to its default.
-    CHECK(migrated.profiles[inf].HasBinding(UAVoiceOverNetPushToTalk, InputCode::Key(SDL_SCANCODE_CAPSLOCK)));
+    CHECK(migrated.profiles[inf].HasBinding(UAVoiceOverNetPushToTalk, InputCode::Key(SDL_SCANCODE_T)));
     CHECK(migrated.profiles[inf].HasBinding(UAMapZoomIn, InputCode::Key(SDL_SCANCODE_KP_PLUS)));
     CHECK(migrated.profiles[inf].HasBinding(UAMapZoomOut, InputCode::Key(SDL_SCANCODE_KP_MINUS)));
     CHECK(migrated.profiles[inf].BindingCount(UACheatEntry) == 1);
@@ -248,7 +248,7 @@ TEST_CASE("ContextControlsConfig: a full version-1 config parses and migrates", 
     ContextControlsConfig reloaded;
     REQUIRE(reloaded.Load(path));
     CHECK_FALSE(reloaded.migratedOnLoad);
-    CHECK(reloaded.profiles[inf].HasBinding(UAVoiceOverNetPushToTalk, InputCode::Key(SDL_SCANCODE_CAPSLOCK)));
+    CHECK(reloaded.profiles[inf].HasBinding(UAVoiceOverNetPushToTalk, InputCode::Key(SDL_SCANCODE_T)));
     CHECK(reloaded.profiles[inf].HasBinding(UAMapZoomIn, InputCode::Key(SDL_SCANCODE_KP_PLUS)));
 
     std::filesystem::remove(path);

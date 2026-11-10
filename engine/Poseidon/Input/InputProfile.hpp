@@ -49,5 +49,10 @@ class InputProfile
 // site that rebuilds default bindings from the bare UserActionDesc key list, so a combo
 // default (currently only the cheat-entry trigger) survives load and reset.
 int DefaultModifierForDefaultKey(UserAction action, int packedKey);
-} // namespace Poseidon
 
+// Switch a profile to the modern-shooter movement layout: A/D strafe, and turning
+// is left to the mouse and the arrow keys. Applies to on-foot only — every vehicle
+// context keeps A/D on the steering actions — so it is called for the infantry
+// profile whenever that profile is seeded or reset to its defaults.
+void ApplyOnFootKeyboardLayout(InputProfile& profile);
+} // namespace Poseidon

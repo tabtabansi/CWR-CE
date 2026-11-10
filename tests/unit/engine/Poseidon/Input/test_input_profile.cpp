@@ -224,13 +224,13 @@ TEST_CASE("InputProfile LoadDefaults skips legacy gamepad bindings", "[input][In
     REQUIRE_FALSE(profile.HasBinding(UAAxisDive, InputCode::GamepadAx(1)));
 }
 
-TEST_CASE("InputProfile defaults VoN CapsLock to push-to-talk only", "[input][InputProfile]")
+TEST_CASE("InputProfile defaults VoN push-to-talk to T only", "[input][InputProfile]")
 {
     InputProfile profile;
     profile.LoadDefaults();
 
-    REQUIRE(profile.HasBinding(UAVoiceOverNetPushToTalk, InputCode::Key(SDL_SCANCODE_CAPSLOCK)));
-    REQUIRE_FALSE(profile.HasBinding(UAVoiceOverNet, InputCode::Key(SDL_SCANCODE_CAPSLOCK)));
+    REQUIRE(profile.HasBinding(UAVoiceOverNetPushToTalk, InputCode::Key(SDL_SCANCODE_T)));
+    REQUIRE_FALSE(profile.HasBinding(UAVoiceOverNet, InputCode::Key(SDL_SCANCODE_T)));
 }
 
 TEST_CASE("InputProfile defaults chat navigation to the legacy keys", "[input][InputProfile][chat]")

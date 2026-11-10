@@ -16,6 +16,19 @@ int DefaultModifierForDefaultKey(UserAction action, int packedKey)
     return -1;
 }
 
+void ApplyOnFootKeyboardLayout(InputProfile& profile)
+{
+    const InputCode left = InputCode::Key(SDL_SCANCODE_A);
+    const InputCode right = InputCode::Key(SDL_SCANCODE_D);
+    // The action descriptions carry A/D on turning because that is the layout every
+    // vehicle wants; on foot they are lifted off the turn actions, and the arrow
+    // keys (the second default there) stay as the keyboard-only way to turn.
+    profile.Unbind(UATurnLeft, left);
+    profile.Unbind(UATurnRight, right);
+    profile.Bind(UAMoveLeft, left);
+    profile.Bind(UAMoveRight, right);
+}
+
 const std::vector<InputCode> InputProfile::emptyBindings_;
 const std::vector<InputBinding> InputProfile::emptyBindingEntries_;
 

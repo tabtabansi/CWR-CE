@@ -90,7 +90,7 @@ TEST_CASE("ControlsCategory: Perform Action is bindable in Gunner (#133)", "[Inp
         return false;
     };
     CHECK(hasKey(UAAction, SDL_SCANCODE_RETURN));
-    CHECK(hasKey(UAAction, INPUT_DEVICE_MOUSE + 2));
+    CHECK(hasKey(UAAction, SDL_SCANCODE_F));
 }
 
 TEST_CASE("ControlsCategory: cheat entry lives in Common with a Shift+Numpad-Minus default",

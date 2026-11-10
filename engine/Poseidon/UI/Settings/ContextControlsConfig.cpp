@@ -198,6 +198,7 @@ void ApplyContextDefaults(InputContext ctx, InputProfile& profile)
         case InputContext::Infantry:
             ApplyInfantryGamepadDefaults(profile);
             ApplyFreelookDefaults(profile);
+            ApplyOnFootKeyboardLayout(profile);
             break;
         case InputContext::CarDriver:
             ApplyDriverGamepadDefaults(profile);

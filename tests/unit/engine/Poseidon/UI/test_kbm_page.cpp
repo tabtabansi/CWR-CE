@@ -266,7 +266,7 @@ TEST_CASE("KbmPage: Common lists VoN toggle next to default push-to-talk", "[UI]
     REQUIRE(RowForCommonAction(UAVoiceOverNetPushToTalk) == toggleRow + 1);
 
     CHECK(std::string(p.BindingPrimary(toggleRow)).empty());
-    CHECK(std::string(p.BindingPrimary(toggleRow + 1)) == (const char*)GetKeyName(SDL_SCANCODE_CAPSLOCK));
+    CHECK(std::string(p.BindingPrimary(toggleRow + 1)) == (const char*)GetKeyName(SDL_SCANCODE_T));
 }
 
 TEST_CASE("KbmPage: vehicle movement capture writes driver profiles", "[UI][KbmPage]")
