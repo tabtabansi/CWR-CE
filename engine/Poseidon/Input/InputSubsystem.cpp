@@ -1209,11 +1209,6 @@ void InputSubsystem::ResetCategoryDefaults(ControlsCategory cat)
                 profile.Bind(static_cast<UserAction>(idx), binding);
         }
     }
-
-    // The on-foot layout moves A/D off turning, which the per-action loop above
-    // cannot express: it rebuilds one action at a time from the shared descriptions.
-    if (cat == ControlsCategoryOnFoot)
-        ApplyOnFootKeyboardLayout(GetProfile(InputContext::Infantry));
 }
 
 UserActionDesc* InputSubsystem::GetUserActionDesc()
@@ -1227,8 +1222,12 @@ UserActionDesc* InputSubsystem::GetUserActionDesc()
         UserActionDesc("MoveDown", IDS_USRACT_MOVE_DOWN, SDL_SCANCODE_LCTRL, SDL_SCANCODE_Z, SDL_SCANCODE_PAGEDOWN, -1),
         UserActionDesc("MoveFastForward", IDS_USRACT_FAST_FORWARD, SDL_SCANCODE_E, -1),
         UserActionDesc("MoveSlowForward", IDS_USRACT_SLOW_FORWARD, SDL_SCANCODE_Q, -1),
-        UserActionDesc("MoveLeft", IDS_USRACT_MOVE_LEFT, SDL_SCANCODE_A, SDL_SCANCODE_X, SDL_SCANCODE_DELETE, -1),
-        UserActionDesc("MoveRight", IDS_USRACT_MOVE_RIGHT, SDL_SCANCODE_D, SDL_SCANCODE_END, -1),
+        // Sidestep keeps the legacy X key and A/D stay on the turn actions above.
+        // On foot this engine derives the body heading from the movement input, so
+        // a sidestep key only re-orients the soldier rather than sliding him
+        // sideways; moving A/D onto it would look identical and help nobody.
+        UserActionDesc("MoveLeft", IDS_USRACT_MOVE_LEFT, SDL_SCANCODE_X, SDL_SCANCODE_DELETE, -1),
+        UserActionDesc("MoveRight", IDS_USRACT_MOVE_RIGHT, SDL_SCANCODE_END, -1),
         UserActionDesc("ToggleWeapons", IDS_USRACT_TOGGLE_WEAPONS, SDL_SCANCODE_1, INPUT_DEVICE_STICK + 3, -1),
         UserActionDesc("Fire", IDS_USRACT_FIRE, INPUT_DEVICE_MOUSE + 0, INPUT_DEVICE_STICK + 7, -1),
         UserActionDesc("ReloadMagazine", IDS_USRACT_RELOAD_MAGAZINE, SDL_SCANCODE_R, SDL_SCANCODE_HOME,
